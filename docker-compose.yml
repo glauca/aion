@@ -21,7 +21,7 @@ services:
     build: .
     container_name: "php"
     volumes:
-     - ~/www/repo/github.com/glauca/aion-api/:/www/
+     - ~/www/repo/github.com/glauca/aion-api/:/var/www/html/api/
      - ${PWD}/php/composer.phar:/usr/local/bin/composer
     networks:
       - aion
