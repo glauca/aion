@@ -1,11 +1,5 @@
 FROM php:8.1-fpm-alpine
 
-# For Linux
-# RUN usermod -u 1000 www-data
-
-# For Mac
-# RUN usermod -u 1000 www-data && usermod -G staff www-data
-
 ENV TIMEZONE Asia/Shanghai
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
@@ -27,6 +21,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # PHP Ldap
 # RUN apk add ldb-dev libldap openldap-dev && docker-php-ext-install -j$(nproc) ldap
+
+# For Linux
+RUN usermod -u 1000 www-data
+
+# For Mac
+# RUN usermod -u 1000 www-data && usermod -G staff www-data
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
