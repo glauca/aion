@@ -7,7 +7,7 @@ services:
     volumes:
      - /data/docker/aion/nginx/certs/:/etc/nginx/certs/
      - /data/docker/aion/nginx/conf.d/:/etc/nginx/conf.d/
-     - /data/docker/aion/nginx/logs/:/vat/log/nginx/
+     - /data/docker/aion/nginx/logs/:/var/log/nginx/
     ports:
      - "80:80"
      - "443:443"
@@ -39,6 +39,7 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=passwd
+      - TZ=Asia/Shanghai
     networks:
       - aion
   redis:
