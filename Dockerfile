@@ -29,4 +29,5 @@ RUN usermod -u 1000 www-data
 # RUN usermod -u 1000 www-data && usermod -G staff www-data
 
 # Use the default production configuration
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+# RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+COPY "./php/php.ini" "$PHP_INI_DIR/php.ini"
