@@ -13,7 +13,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && pecl install mcrypt-1.0.5 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) bcmath gd mysqli pdo_mysql opcache sockets soap zip \
+    && docker-php-ext-install -j$(nproc) bcmath exif gd mysqli pdo_mysql opcache sockets soap zip \
     && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo "${TIMEZONE}" > /etc/timezone \
     && rm -fr /tmp/pear \
