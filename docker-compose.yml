@@ -52,6 +52,23 @@ services:
       - 6379:6379
     networks:
       - aion
+  rabbitmq:
+    image: rabbitmq:alpine
+    container_name: rabbitmq
+    restart: always
+    hostname: rabbit
+    volumes:
+      - /data/docker/aion/rabbitmq/data/:/var/lib/rabbitmq/
+      - /data/docker/aion/rabbitmq/conf/:/etc/rabbitmq/
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - TZ=Asia/Shanghai
+      - RABBITMQ_DEFAULT_USER=rabbit
+      - RABBITMQ_DEFAULT_PASS=123456
+    networks:
+      - aion
 networks:
   aion:
     driver: overlay
