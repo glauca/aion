@@ -5,9 +5,9 @@ services:
     container_name: "nginx"
     restart: always
     volumes:
-     - /data/docker/aion/nginx/certs/:/etc/nginx/certs/
-     - /data/docker/aion/nginx/conf.d/:/etc/nginx/conf.d/
-     - /data/docker/aion/nginx/logs/:/var/log/nginx/
+     - ./nginx/certs/:/etc/nginx/certs/
+     - ./nginx/conf.d/:/etc/nginx/conf.d/
+     - ./nginx/logs/:/var/log/nginx/
     ports:
      - "80:80"
      - "443:443"
@@ -34,7 +34,7 @@ services:
     container_name: mysql
     restart: always
     volumes:
-      - /data/docker/aion/mysql/data/:/var/lib/mysql/
+      - ./mysql/data/:/var/lib/mysql/
     ports:
       - 3306:3306
     environment:
@@ -47,7 +47,7 @@ services:
     container_name: redis
     restart: always
     volumes:
-      - /data/docker/aion/redis/data/:/data/
+      - ./redis/data/:/data/
     ports:
       - 6379:6379
     networks:
@@ -58,8 +58,8 @@ services:
     restart: always
     hostname: rabbit
     volumes:
-      - /data/docker/aion/rabbitmq/data/:/var/lib/rabbitmq/
-      - /data/docker/aion/rabbitmq/conf/:/etc/rabbitmq/
+      - ./rabbitmq/data/:/var/lib/rabbitmq/
+      - ./rabbitmq/conf/:/etc/rabbitmq/
     ports:
       - 5672:5672
       - 15672:15672
