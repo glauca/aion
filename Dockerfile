@@ -19,6 +19,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && rm -fr /tmp/pear \
     && apk del .build-deps freetype-dev libpng-dev libjpeg-turbo-dev icu-dev tzdata
 
+RUN curl -sS https://getcomposer.org/installer | php --install-dir=/usr/local/bin --filename=composer
+
 # PHP Ldap
 # RUN apk add ldb-dev libldap openldap-dev && docker-php-ext-install -j$(nproc) ldap
 
