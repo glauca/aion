@@ -23,7 +23,6 @@ services:
     container_name: "php"
     volumes:
      - /data/www/github.com/glauca/aion-api/:/var/www/html/aion-api/
-     - /data/docker/aion/php/composer.phar:/usr/local/bin/composer
     networks:
       - aion
     depends_on:
