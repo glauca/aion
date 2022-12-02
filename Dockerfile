@@ -12,6 +12,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && docker-php-ext-enable redis \
     && pecl install mcrypt-1.0.5 \
     && docker-php-ext-enable mcrypt \
+    && pecl install trader-0.5.1 \
+    && docker-php-ext-enable trader \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) bcmath exif gd intl mysqli pdo_mysql opcache sockets soap zip \
     && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
