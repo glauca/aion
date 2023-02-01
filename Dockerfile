@@ -8,6 +8,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && apk add --no-cache freetype freetype-dev libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev \
     && apk add --no-cache libmcrypt-dev libxml2-dev libzip-dev icu icu-dev tzdata \
     && apk add --no-cache --virtual .build-deps g++ make autoconf \
+    && apk add --no-cache git
     && pecl install redis-5.3.7 \
     && docker-php-ext-enable redis \
     && pecl install mcrypt-1.0.5 \
