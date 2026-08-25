@@ -38,3 +38,28 @@ sudo dnf remove docker-ce docker-ce-cli containerd.io docker-buildx-plugin docke
 sudo rm -rf /var/lib/docker
 sudo rm -rf /var/lib/containerd
 ```
+
+#### 镜像加速器
+
+```bash
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io",
+    "https://docker.xuanyuan.me",
+    "https://docker.1ms.run"
+  ]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+#### 证书申请与续签
+
+```bash
+certbot certonly  -d *.runoob.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+
+certbot certonly --force-renewal --manual -d '*.runoob.com' --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
