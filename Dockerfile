@@ -4,10 +4,11 @@ ENV TIMEZONE Asia/Shanghai
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && apk update \
+    && apk add --no-cache linux-headers alpine-sdk autoconf openssl-dev \
     && apk add shadow && usermod -u 1000 www-data \
     && apk add --no-cache freetype freetype-dev libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev \
     && apk add --no-cache libmcrypt-dev libxml2-dev libzip-dev icu icu-dev tzdata \
-    && apk add --no-cache --virtual .build-deps g++ make autoconf \
+    && apk add --no-cache --virtual .build-deps g++ make \
     && apk add --no-cache git \
     && pecl install redis-6.3.0 \
     && docker-php-ext-enable redis \
@@ -16,11 +17,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     && pecl install trader-0.5.1 \
     && docker-php-ext-enable trader \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) bcmath exif gd intl mysqli pdo_mysql opcache soap zip \
+    && docker-php-ext-install -j$(nproc) bcmath exif gd intl mysqli pdo_mysql opcache sockets soap zip \
     && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo "${TIMEZONE}" > /etc/timezone \
     && rm -fr /tmp/pear \
-    && apk del .build-deps freetype-dev libpng-dev libjpeg-turbo-dev icu-dev tzdata \
+    && apk del linux-headers .build-deps freetype-dev libpng-dev libjpeg-turbo-dev icu-dev tzdata \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
 # PHP Ldap
