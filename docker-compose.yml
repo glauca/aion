@@ -1,7 +1,7 @@
 version: "3"
 services:
   nginx:
-    image: nginx:alpine
+    image: nginx:1.30.4-alpine
     container_name: "nginx"
     restart: always
     volumes:
@@ -45,7 +45,7 @@ services:
     networks:
       - aion
   phpmyadmin:
-    image: phpmyadmin:latest
+    image: phpmyadmin:5.2.3-fpm-alpine
     container_name: phpmyadmin
     restart: always
     ports:
@@ -55,7 +55,7 @@ services:
     networks:
       - aion
   redis:
-    image: redis:alpine
+    image: redis:8.10-alpine
     container_name: redis
     restart: always
     volumes:
@@ -67,7 +67,7 @@ services:
     networks:
       - aion
   rabbitmq:
-    image: rabbitmq:alpine
+    image: rabbitmq:4.3-alpine
     container_name: rabbitmq
     restart: always
     hostname: rabbit
