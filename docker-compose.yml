@@ -1,14 +1,12 @@
-version: "3"
 services:
   nginx:
-    image: registry.cn-hangzhou.aliyuncs.com/glauca/nginx:1.30.4-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/nginx:1.30.6-alpine
     container_name: "nginx"
     restart: always
     volumes:
       - ./nginx/certs/:/etc/nginx/certs/
       - ./nginx/conf.d/:/etc/nginx/conf.d/
       - ./nginx/logs/:/var/log/nginx/
-      - ~/www/gitee.com/:/var/www/html/gitee.com/
       - ~/www/github.com/:/var/www/html/github.com/
     ports:
       - "80:80"
@@ -24,7 +22,6 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/glauca/php:8.3.36-fpm-alpine
     container_name: "php"
     volumes:
-      - ~/www/gitee.com/:/var/www/html/gitee.com/
       - ~/www/github.com/:/var/www/html/github.com/
     networks:
       - aion
