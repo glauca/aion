@@ -1,7 +1,7 @@
 version: "3"
 services:
   nginx:
-    image: nginx:1.30.4-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/nginx:1.30.4-alpine
     container_name: "nginx"
     restart: always
     volumes:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - php
   php:
-    image: registry.cn-hangzhou.aliyuncs.com/glauca/php:8.3-fpm-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/php:8.3.36-fpm-alpine
     container_name: "php"
     volumes:
       - ~/www/gitee.com/:/var/www/html/gitee.com/
@@ -32,7 +32,7 @@ services:
       - redis
       - mysql
   mysql:
-    image: mysql:8.0.41
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/mysql:8.0.41
     container_name: mysql
     restart: always
     volumes:
@@ -55,19 +55,19 @@ services:
     networks:
       - aion
   redis:
-    image: redis:8.10-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/redis:8.10-alpine
     container_name: redis
     restart: always
     volumes:
       - ./redis/data/:/data/
       - ./redis/conf/:/usr/local/etc/redis/
-    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     ports:
       - 6379:6379
     networks:
       - aion
   rabbitmq:
-    image: rabbitmq:4.3-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/glauca/rabbitmq:4.3-alpine
     container_name: rabbitmq
     restart: always
     hostname: rabbit

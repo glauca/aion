@@ -63,3 +63,16 @@ certbot certonly  -d *.runoob.com --manual --preferred-challenges dns --server h
 
 certbot certonly --force-renewal --manual -d '*.runoob.com' --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 ```
+
+### [阿里云 ACR 个人版兼容问题](https://nenufm.com/posts/docker-push-unknown-manifest-class-oci-empty-provenance)
+
+```bash
+docker build \
+  --provenance=false \
+  --sbom=false \
+  -t REGISTRY/OWNER/IMAGE:TAG \
+  -f Dockerfile \
+  .
+
+docker push REGISTRY/OWNER/IMAGE:TAG
+```
